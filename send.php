@@ -1,33 +1,27 @@
 <?php
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los datos del formulario
+    $name = $_POST['name'];
+    $asistencia = isset($_POST['asistencia']) ? "Sí" : "No";
+    $mensaje = $_POST['comment'];
 
-//varible setting
- $name= $_REQUEST['name'];
- $email = $_REQUEST['asistencia'];
- $message = $_REQUEST['comment'];
- $subject = "Message from Contact form !";
+    // Configurar los detalles del correo electrónico
+    $to = 'destinatario@example.com';  // Cambia esto con la dirección de correo electrónico del destinatario
+    $subject = 'Confirmación de asistencia a la boda';
+    $message = "Nombre: " . $name . "\n";
+    $message .= "Asistencia: " . $asistencia . "\n";
+    $message .= "Mensaje: " . $comment . "\n";
 
- $to ="lupitaksb721@gmail.com";  // change receiving email id 
+    // Enviar el correo electrónico
+    $headers = 'From: lupitaksb721@gmail.com' . "\r\n" .
+        'Reply-To: lupitaksb721@gmail.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
 
- $content = "Name : ". $name. "\r\nContact email : ". $asistencia. "\r\n \r\ncomment : \r\n \r\n".$comment ; // name [break] email [break] message
-
-
-
-// check input fields
-if ( empty($name)|| empty($asistencia)|| empty($comment))
-{
-echo"<script type='text/javascript'>alert('Please fill all correct');
-    window.history.go(-1);
-    </script>";
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Correo electrónico enviado correctamente.";
+    } else {
+        echo "Error al enviar el correo electrónico.";
+    }
 }
-else 
-{ mail($to,$subject,$content);
-
-    echo"<script type='text/javascript'>alert('Your message sent succesfully ');
-    window.history.go(-1);
-    </script>";
-}
-
-
-?>
 ?>
