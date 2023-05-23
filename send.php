@@ -1,7 +1,7 @@
 <?php
-require 'assets/lib/PHPMailer/src/Exception.php';
-require 'assets/lib/PHPMailer/src/PHPMailer.php';
-require 'assets/lib/PHPMailer/src/SMTP.php';
+require 'assets/lib/src/Exception.php';
+require 'assets/lib/src/PHPMailer.php';
+require 'assets/lib/src/SMTP.php';
 
 
 // Recibir los datos del formulario
